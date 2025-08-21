@@ -1,0 +1,67 @@
+/* General Styling */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #e3f2fd, #ffffff);
+    color: #333;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 600;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: #00f2fe !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    border: none;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #00f2fe, #4facfe);
+    transform: scale(1.05);
+}
+
+.btn-outline-secondary:hover {
+    background-color: #e0f7fa;
+    color: #00796b;
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: 12px;
+}
+
+.card-header {
+    font-weight: 600;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    color: white;
+}
+
+/* Image Preview */
+#image_preview {
+    border: 2px solid #4facfe;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #f8f9fa;
+    color: #6c757d;
+}

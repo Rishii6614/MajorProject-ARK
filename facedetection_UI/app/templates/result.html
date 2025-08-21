@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="text-center fw-bold mb-5 text-success"> Match Result</h2>
+
+<div class="row g-4 align-items-stretch">
+    <!-- LEFT SIDE: Prediction Image & Recognized Names -->
+    <div class="col-lg-6">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-body d-flex flex-column justify-content-between">
+                <div class="text-center">
+                    {% if image_path %}
+                        <img src="{{ url_for('static', filename='results/' + image_path) }}" 
+                             class="img-fluid rounded mb-4" 
+                             alt="Detected Image"
+                             style="max-height: 350px; width: 100%; object-fit: contain;">
+                    {% else %}
+                        <p class="text-danger">No image to display.</p>
+                    {% endif %}
+                </div>
+
+                {% if faces %}
+                    <h5 class="text-dark text-center">Recognized Faces:</h5>
+                    <ul class="list-group list-group-flush mb-4">
+                        {% for name in faces %}
+                            <li class="list-group-item text-center">{{ name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <div class="text-center">
+                    <a href="{{ url_for('main.predict') }}" class="btn btn-primary me-2"> Try Another</a>
+                    <a href="{{ url_for('main.index') }}" class="btn btn-outline-secondary"> Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE: Process Explanation in Multiple Cards -->
+    <div class="col-lg-6">
+        <div class="row g-3">
+            {% set explanation = [
+                " Upload or capture image in real-time with webcam.",
+                " Image is converted to grayscale to speed up detection.",
+                " Haar cascade detects face coordinates.",
+                " Cropped face is extracted from the image.",
+                " LBPH model compares face features with dataset.",
+                " Matching face is labeled, unknowns marked as such.",
+                " Annotated image saved to static/results folder.",
+                " Everything runs locally with no external APIs.",
+                " Works instantly on any device or OS.",
+                " Reliable even with multiple faces or low lighting.",
+                " Training data organized under labeled folders.",
+                " No internet access required for recognition.",
+                " Easily retrain model with new data anytime.",
+                " Designed for real-world accuracy and flexibility."
+            ] %}
+            {% for point in explanation %}
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 50 }}">
+                <div class="card h-100 shadow-sm border-0 hover-card">
+                    <div class="card-body d-flex align-items-center">
+                        <p class="card-text text-muted small m-0">{{ point }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Hover Effect Styles -->
+<style>
+    .hover-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+</style>
+
+<!-- AOS Animation -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>AOS.init();</script>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Hero Section -->
+<section class="row align-items-center mb-5">
+    <div class="col-md-6 text-center text-md-start mb-4 mb-md-0">
+        <h1 class="display-5 fw-bold text-dark mb-3">Detect Faces Instantly</h1>
+        <p class="fs-5 text-muted">Smart. Fast. Reliable. Get started by capturing a live photo or uploading an image.</p>
+        <a href="{{ url_for('main.predict') }}" class="btn btn-primary try-now-btn px-4 py-2 mt-3"> Try Now</a>
+    </div>
+    <div class="col-md-6 text-center">
+        <img src="{{ url_for('static', filename='images/face-detection.png') }}" alt="Face Detection Illustration" class="img-fluid" style="max-height: 300px;">
+    </div>
+</section>
+
+<!-- Info Section -->
+<section class="mb-5">
+    <div class="row g-4">
+        {% set cards = [
+            {'title': ' Accuracy', 'text': 'Uses LBPH model for precise face recognition. Handles lighting variations, multiple faces, and group detections with optimized real-time deployment.'},
+            {'title': ' Security', 'text': 'Local processing ensures full privacy. No cloud uploads or third-party access. Full control of your labeled dataset and detection output.'},
+            {'title': ' Simplicity', 'text': 'Clean UI with fast detection logic. Upload or capture an image and receive results instantly. Built for all users with zero setup hassle.'},
+            {'title': ' Customization', 'text': 'Train on your own dataset. Update or retrain your identities anytime. Fully modular and retrainable face matching system.'},
+            {'title': ' Performance', 'text': 'Ultra-lightweight and optimized for fast inference. Works well on low-spec systems with webcam or batch uploads.'},
+            {'title': ' Compatibility', 'text': 'Responsive UI for web and mobile. Works on all major browsers and deploys easily to any hosting provider (Heroku, EC2, etc.).'}
+        ] %}
+        {% for card in cards %}
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+            <div class="card h-100 shadow-sm border-0 hover-card">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">{{ card.title }}</h5>
+                    <p class="card-text text-muted">{{ card.text }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Custom Styles -->
+<style>
+    .hover-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+    .try-now-btn {
+        background: linear-gradient(to right, #4facfe, #00f2fe);
+        border: none;
+        transition: 0.3s ease-in-out;
+        font-weight: 500;
+    }
+    .try-now-btn:hover {
+        background: linear-gradient(to left, #4facfe, #00f2fe);
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+    }
+</style>
+
+<!-- AOS Animate on Scroll Library -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>AOS.init();</script>
+
+{% endblock %}
